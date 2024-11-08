@@ -1,7 +1,14 @@
 import json
 
-from src.utils import (currency_rates, get_data_excel, greeting_user, operations_cards, sort_date_operations,
-                       stock_prices, top_five)
+from src.utils import (
+    currency_rates,
+    get_data_excel,
+    greeting_user,
+    operations_cards,
+    sort_date_operations,
+    stock_prices,
+    top_five,
+)
 
 
 def web_main(date: str) -> json:

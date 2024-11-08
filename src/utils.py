@@ -82,7 +82,7 @@ def operations_cards(operations: list) -> list:
             if four_digits in card_number_operations:
                 card_number_operations[four_digits]["total_spent"] += amount
             else:
-                card_number_operations[four_digits] = {"total_spent": (amount), "cashback": 0}
+                card_number_operations[four_digits] = {"total_spent": amount, "cashback": 0}
             card_number_operations[four_digits]["cashback"] = card_number_operations[four_digits]["total_spent"] * 0.01
     for digits, data in card_number_operations.items():
         result.append(

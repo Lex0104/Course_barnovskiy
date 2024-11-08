@@ -4,9 +4,15 @@ from unittest.mock import mock_open, patch
 
 import pandas as pd
 import pytest
-
-from src.utils import (currency_rates, get_data_excel, greeting_user, operations_cards, sort_date_operations,
-                       stock_prices, top_five)
+from src.utils import (
+    currency_rates,
+    get_data_excel,
+    greeting_user,
+    operations_cards,
+    sort_date_operations,
+    stock_prices,
+    top_five,
+)
 
 
 @patch("builtins.open", new_callable=mock_open)

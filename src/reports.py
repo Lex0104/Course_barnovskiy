@@ -37,7 +37,7 @@ def recording(file_name) -> Callable:
 def spending_by_category(transactions: pd.DataFrame, category: str, date: Optional[str] = None) -> pd.DataFrame:
     """Показываются затраты по категории за последние три месяца от даты"""
     logger.info("Ищем траты по конкретной категории")
-    if date !=None:
+    if date != None:
         date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
     three_months = date - pd.DateOffset(months=3)
