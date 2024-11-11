@@ -8,11 +8,11 @@ transactions = get_data_excel("../data/operations.xlsx")
 transactions_df = pd.read_excel("../data/operations.xlsx")
 
 
-def main(user_date: str, operations: list, operations_df: pd.DataFrame, user_category: str) -> None:
+def main(user_date: str, operations: list, operations_df: pd.DataFrame, category: str) -> None:
     """Вызывает результаты всех реализованных функций"""
     print(web_main(user_date))
     print(transactions_phone_numbers(operations))
-    print(spending_by_category(operations_df, user_category, user_date))
+    print(spending_by_category(operations_df, category, user_date))
 
 
 if __name__ == "__main__":

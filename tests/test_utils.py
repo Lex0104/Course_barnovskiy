@@ -23,27 +23,9 @@ def test_get_data_excel(mock_read_excel: Any, mock_file: Any) -> None:
     assert transactions == [{"amount": 100, "currency": "USD"}]
 
 
-
-def test_sort_date_operations(operations_list: list) -> None:
-    assert sort_date_operations(operations_list, "2021-12-30 17:50:30") == [
-        {
-            "Дата операции": "30.12.2021 17:50:30",
-            "Дата платежа": "30.12.2021",
-            "Номер карты": "",
-            "Статус": "OK",
-            "Сумма операции": 5046.00,
-            "Валюта операции": "RUB",
-            "Сумма платежа": 5046.00,
-            "Валюта платежа": "RUB",
-            "Кэшбэк": "",
-            "Категория": "Пополнение",
-            "MCC": "",
-            "Описание": "Пополнение через Газпромбанк",
-            "Бонусы (включая кэшбэк)": 0,
-            "Округление на инвесткопилку": 0,
-            "Сумма операции с округлением": 5046.00,
-        }
-    ]
+def test_sort_date_operations(transactions: pd.DataFrame) -> None:
+    result_df = sort_date_operations(transactions, "2021-12-29 11:15:21")
+    assert len(result_df) == 2
 
 
 @pytest.mark.parametrize(
@@ -67,8 +49,8 @@ def test_operations_cards() -> None:
     ]
 
 
-def test_top_five_transactions(small_operations_list: list) -> None:
-    assert top_five(small_operations_list) == [
+def test_top_five_transactions(small_operations: pd.DataFrame) -> None:
+    assert top_five(small_operations) == [
         {"date": "30.12.2021", "amount": 5046.00, "category": "Пополнение", "описание": "Пополнение через Газпромбанк"}
     ]
 

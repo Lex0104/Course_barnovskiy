@@ -3,7 +3,7 @@ import json
 from src.services import transactions_phone_numbers
 
 
-def test_transactions_phone_numbers(operations) -> None:
+def test_transactions_phone_numbers(num_operations_list) -> None:
     result = [
         {
             "Дата операции": "30.12.2021 17:50:17",
@@ -23,4 +23,4 @@ def test_transactions_phone_numbers(operations) -> None:
             "Сумма операции с округлением": 174000.00,
         },
     ]
-    assert transactions_phone_numbers(operations) == json.dumps(result, ensure_ascii=False)
+    assert transactions_phone_numbers(num_operations_list) == json.dumps(result, ensure_ascii=False)

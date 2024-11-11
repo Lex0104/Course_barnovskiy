@@ -17,8 +17,8 @@ def transactions() -> pd.DataFrame:
 
 
 def test_spending_by_category(transactions: pd.DataFrame) -> None:
-    result_df = spending_by_category ( transactions, "Пополнения", "2021-18-12 17:50:17" )
-    assert len(result_df) == 1
+    result_df = spending_by_category(transactions, "Пополнения", "2021-18-12 17:50:17")
+    assert len(result_df) == 3
 
 
 def test_spending_by_category_no_data(transactions: pd.DataFrame) -> None:

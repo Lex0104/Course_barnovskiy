@@ -41,8 +41,10 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
         date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
     three_months = date - pd.DateOffset(months=3)
-    transactions[transactions["Категория"] == category].copy()
-    df_date = pd.to_datetime(transactions["Дата платежа"], format="%d.%m.%Y")
-    filtered_operations = transactions[(three_months <= df_date) & (df_date <= date)]
-    result = filtered_operations["Сумма операции с округлением"].sum()
-    return pd.DataFrame({"Траты": [result]})
+    transactions["Дата платежа"] = pd.to_datetime(transactions["Дата платежа"], format="%d.%m.%Y" )
+    filtered_operations = transactions[
+        (transactions["Категория"] == category) &
+        (three_months <= transactions["Дата платежа"]) &
+        (transactions["Дата платежа"] <= date)
+        ]
+    return filtered_operations
