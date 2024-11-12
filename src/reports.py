@@ -47,4 +47,4 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
         (three_months <= transactions["Дата платежа"]) &
         (transactions["Дата платежа"] <= date)
         ]
-    return filtered_operations
+    return filtered_operations["Сумма операции с округлением"].sum()
