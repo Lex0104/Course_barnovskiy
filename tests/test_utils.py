@@ -23,9 +23,9 @@ def test_get_data_excel(mock_read_excel: Any, mock_file: Any) -> None:
     assert transactions == [{"amount": 100, "currency": "USD"}]
 
 
-def test_sort_date_operations(transactions: pd.DataFrame) -> None:
-    result_df = sort_date_operations(transactions, "2021-12-29 11:15:21")
-    assert len(result_df) == 2
+def test_sort_date_operations(num_operations_list: pd.DataFrame) -> None:
+    result_df = sort_date_operations(num_operations_list, "2021-12-30 17:50:17")
+    assert len(result_df) == 1
 
 
 @pytest.mark.parametrize(
@@ -49,18 +49,16 @@ def test_operations_cards() -> None:
     ]
 
 
-def test_top_five_transactions(small_operations: pd.DataFrame) -> None:
-    assert top_five(small_operations) == [
-        {"date": "30.12.2021", "amount": 5046.00, "category": "Пополнение", "описание": "Пополнение через Газпромбанк"}
+def test_top_five_transactions(small_operations_list: pd.DataFrame) -> None:
+    assert top_five(small_operations_list) == [
+        {'date': '26.05.2021', 'amount': 20000.0, 'category': 'Пополнения', 'description': 'Перевод с карты'}
     ]
 
 
 @patch("requests.get")
-def test_currency_rates(mock_usd: Any, mock_eur: Any) -> None:
+def test_currency_rates(mock_usd: Any) -> None:
     mock_usd.return_value.status_code = 200
-    mock_eur.return_value.status_code = 200
     mock_usd.return_value.json.return_value = {"data": {"RUB": {"value": 1.00}}}
-    mock_eur.return_value.json.return_value = {"data": {"RUB": {"value": 1.00}}}
     assert currency_rates() == [{"currency": "USD", "rate": 1.00}, {"currency": "EUR", "rate": 1.00}]
 
 

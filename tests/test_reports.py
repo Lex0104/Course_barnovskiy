@@ -17,11 +17,10 @@ def transactions() -> pd.DataFrame:
 
 
 def test_spending_by_category(transactions: pd.DataFrame) -> None:
-    result_df = spending_by_category(transactions, "Пополнения", "2021-18-12 17:50:17")
-    assert len(result_df) == 3
+    result_df = spending_by_category(transactions, "Пополнения", "2021-12-30 17:50:17")
+    assert result_df == 179046.48
 
 
 def test_spending_by_category_no_data(transactions: pd.DataFrame) -> None:
     result_df = spending_by_category ( transactions, "Аптеки" )
-    assert len( result_df ) == 1
-    assert result_df["Траты"].values == 0
+    assert result_df == 0.0
