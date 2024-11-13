@@ -12,16 +12,15 @@ def transactions() -> pd.DataFrame:
         {"Дата платежа": "27.09.2020", "Категория": "Супермаркеты", "Сумма операции с округлением": -122.97},
         {"Дата платежа": "28.08.2020", "Категория": "Аптеки", "Сумма операции с округлением": -277.00},
     ]
-    transactions_df = pd.DataFrame(transactions_data)
+    transactions_df = pd.DataFrame ( transactions_data )
     return transactions_df
 
 
 def test_spending_by_category(transactions: pd.DataFrame) -> None:
-    result_df = spending_by_category(transactions, "Пополнения", "2021-18-12 17:50:17")
-    assert len(result_df) == 1
+    result_df = spending_by_category(transactions, "Пополнения", "2021-12-30 17:50:17")
+    assert result_df == 179046.48
 
 
 def test_spending_by_category_no_data(transactions: pd.DataFrame) -> None:
-    result_df = spending_by_category(transactions, "Аптеки")
-    assert len(result_df) == 1
-    assert result_df["Траты"].values == 0
+    result_df = spending_by_category ( transactions, "Аптеки" )
+    assert result_df == 0.0

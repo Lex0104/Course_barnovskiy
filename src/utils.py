@@ -46,12 +46,12 @@ def get_data_excel(path_to_the_file: str) -> list:
 def sort_date_operations(operations: list, date: str) -> list:
     """Сортирует операции за текущий месяц"""
     sorted_operations = []
-    first_day_moth = datetime.strptime(date, "%Y-%m-%d %H:%M:%S").replace(day=1)
-    data_datetime = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+    first_day_moth = datetime.strptime ( date, "%Y-%m-%d %H:%M:%S" ).replace ( day=1 )
+    data_datetime = datetime.strptime ( date, "%Y-%m-%d %H:%M:%S" )
     for operation in operations:
-        date_operation = datetime.strptime(operation["Дата операции"], "%d.%m.%Y %H:%M:%S")
+        date_operation = datetime.strptime ( operation["Дата операции"], "%d.%m.%Y %H:%M:%S" )
         if first_day_moth <= date_operation <= data_datetime:
-            sorted_operations.append(operation)
+            sorted_operations.append ( operation )
     return sorted_operations
 
 
@@ -124,7 +124,7 @@ def currency_rates() -> list:
 def stock_prices() -> list:
     """Cтоимость акций S&P 500"""
     logger.info("Поиск основных акций из S&P500")
-    # url =
+    url = f"https://api.marketstack.com/v1/eod/latest?access_key={for_share}"
     result = []
     with open(file_json, encoding="utf-8") as file:
         share_shares = json.load(file)

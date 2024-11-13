@@ -19,8 +19,13 @@ logger.addHandler(file_handler)
 def transactions_phone_numbers(operations: list) -> json:
     """Функция направлена на возвращание JSON со всеми транзакциями, содержащими в описании номера"""
     logger.info("Ищем транзакции содержащие мобильные номера")
-    pattern = re.compile(r"\b(\+7)\s*(985|981|926|915|949|916|925|\d{3})\s*\d{3}\s*[-]\s*\d{2}\s*[-]\s*\d{2}\b")
+    pattern = re.compile(r"\b\+?[7,8] (\s*\d{3} \s*\d{3}-\s*\d{2}-\s*\d{2})\b")
     filtered_transactions = [
         operation for operation in operations if "Описание" in operation and pattern.search(operation["Описание"])
     ]
     return json.dumps(filtered_transactions, ensure_ascii=False)
+
+
+
+
+# r"\b?:(\+7)\s*(985|981|926|915|949|916|925|\d{3})\s*\d{3}\s*[-]\s*\d{2}\s*[-]\s*\d{2}\b"
